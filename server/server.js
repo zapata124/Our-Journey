@@ -3,7 +3,7 @@ const path = require('path');
 const app = express();
 const PORT = 3000;
 
-app.use(express.json());
+app.use(express.json()); //testing
 
 //const apiRouter = require('./routes/api');
 
