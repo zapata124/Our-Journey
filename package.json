@@ -1,0 +1,19 @@
+{
+  "name": "our-journey",
+  "version": "1.0.0",
+  "description": "Travel blog to share stories of vacations with your friends",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pink-Fairy-Armadillos/Our-Journey.git"
+  },
+  "author": "Jason Yoon, Eddy Zapata, Kaden Johnson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pink-Fairy-Armadillos/Our-Journey/issues"
+  },
+  "homepage": "https://github.com/Pink-Fairy-Armadillos/Our-Journey#readme"
+}
