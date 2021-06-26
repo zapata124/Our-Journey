@@ -4,7 +4,7 @@
   "description": "Travel blog to share stories of vacations with your friends",
   "main": "webpack.config.js",
   "scripts": {
-    "dev": "concurrently \"cross-env NODE_ENV=development webpack serve --open --hot \" nodemon ./Server/server.js"
+    "dev": "concurrently \"cross-env NODE_ENV=development webpack serve --open --hot \" nodemon ./server/server.js"
   },
   "repository": {
     "type": "git",
