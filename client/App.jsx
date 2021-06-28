@@ -5,7 +5,7 @@ import {
 	Marker,
 	InfoWindow,
 } from '@react-google-maps/api';
-import { formatRelative } from 'data-fns';
+// import { formatRelative } from 'data-fns';
 
 // import usePlacesAutocomplete, {
 // 	getGeocode,
@@ -21,6 +21,8 @@ import { formatRelative } from 'data-fns';
 import '@reach/combobox/styles.css';
 
 import mapStyles from './mapStyles';
+import react from 'react';
+import { set } from 'mongoose';
 
 const libraries = ['places'];
 const mapContainerStyle = {
@@ -47,13 +49,33 @@ export default function App() {
 	const [markers, setMarkers] = React.useState([]);
 	const [selected, setSelected] = React.useState(null);
 
+	React.useEffect(() => {
+		fetch('/api')
+			.then(res => res.json())
+			.then(data => {
+				//console.log([...markers,...data.location])
+				setMarkers([...markers, ...data.location])
+				});
+	}, []);
+
 	const onMapClick = React.useCallback(event => {
+
+		const data = {name: 'eddy',
+						rating: 3,
+						locationName: 'Jersey',
+						location: {longitude: event.latLng.lng(),
+									latitude: event.latLng.lat()},
+	}
+
+		fetch('/api',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+
+
+
 		setMarkers(current => [
 			...current,
 			{
 				lat: event.latLng.lat(),
 				lng: event.latLng.lng(),
-				time: new Date(),
 			},
 		]);
 	}, []);
@@ -65,6 +87,9 @@ export default function App() {
 
 	if (loadError) return 'Error loading maps';
 	if (!isLoaded) return 'loading Maps';
+
+	
+
 
 	return (
 		<div>
@@ -79,7 +104,7 @@ export default function App() {
 			>
 				{markers.map(marker => (
 					<Marker
-						key={marker.time.toISOString()}
+						key={marker.reviewDate}
 						position={{ lat: marker.lat, lng: marker.lng }}
 						// icon={{
 						// 	url: "./arma.jpeg",
@@ -96,13 +121,13 @@ export default function App() {
 				{selected ? (
 					<InfoWindow
 						position={{ lat: selected.lat, lng: selected.lng }}
-						// onCloseClick={() => {
-						// 	setSelected(null);
-						// }}
+						onCloseClick={() => {
+							setSelected(null);
+						}}
 					>
 						<div>
-							<h2>Favorite Location!</h2>
-							<p>Spotted {formatRelative(selected.time, new Date())}</p>
+							<h2>{selected.name}</h2>
+							{/* // <p>Spotted {formatRelative(selected.time, new Date())}</p> */}
 						</div>
 					</InfoWindow>
 				) : null}
