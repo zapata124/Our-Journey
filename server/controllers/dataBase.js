@@ -6,6 +6,7 @@ const TripController = {
 
 
     addTrip(req, res, next) {
+        //console.log(req.body.reviewDate)
         Trip.create(
             {
                 name: req.body.name,
@@ -19,6 +20,7 @@ const TripController = {
             }
         ).then((data) => {
             res.locals.newReview = data;
+            console.log(data.reviewDate)
             return next();
         }).catch((err) => {
             return next({
@@ -30,7 +32,8 @@ const TripController = {
 
 
     getLocation(req, res, next) {
-        Trip.find({}, { location: 1 }).then((data) => {
+        Trip.find({}, { location: 1, reviewDate: 1}).then((data) => {
+            console.log('saved data', data)
             res.locals.Locations = data;
             return next();
         }).catch((err) => {

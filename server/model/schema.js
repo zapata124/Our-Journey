@@ -34,7 +34,8 @@ const ourJourneySchema = new Schema(
             latitude: Number,
         },
         reviewDate: {
-            date: Date,
+            type: Date,
+            default: Date.now,
         },
         tripDate: {
             day: String,
