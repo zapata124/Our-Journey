@@ -10,6 +10,8 @@ const PORT = 3000;
 app.use(express.json());
 app.use(cookieParser()) //testing
 
+
+
 const apiRouter = require('./routes/api');
 const userRouter = require('./routes/user')
 const sessionController = require('./controllers/sessionController')
