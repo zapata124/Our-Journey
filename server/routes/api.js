@@ -1,26 +1,26 @@
 const express = require('express')
 
-const mapController = require('../controllers/dataBase');
+const reviewController = require('../controllers/reviewController');
 
 const router = express.Router();
 
-router.get('/', mapController.getLocation,
+router.get('/', reviewController.getLocation,
   (req, res) => {
     console.log(res.locals.Locations)
     return res.status(200).json(res.locals.Locations);
   })
 
-router.post('/', mapController.addTrip,
+router.post('/', reviewController.addTrip,
   (req, res) => {
     return res.status(200).json(res.locals.newReview);
   })
 
-router.get('/:id', mapController.getReview,
+router.get('/:id', reviewController.getReview,
   (req, res) => {
     return res.status(200).json(res.locals.Review)
   })
 
-router.delete('/:id', mapController.deleteReview,
+router.delete('/:id', reviewController.deleteReview,
   (res, req) => {
     return res.status(200).json(res.locals.Review)
   })
