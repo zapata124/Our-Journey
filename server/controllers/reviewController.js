@@ -1,38 +1,41 @@
-// const { ModuleFilenameHelpers } = require('webpack');
-// const { db } = require('../model/schema');
-const Trip = require('../model/schema');
 
-const TripController = {
+const Trip = require('../model/reviewModel');
+
+const reviewController = {
 
 
     addTrip(req, res, next) {
-        //console.log(req.body.reviewDate)
-        Trip.create(
-            {
-                name: req.body.name,
-                rating: req.body.rating,
-                review: req.body.review,
-                locationName: req.body.locationName,
-                location: req.body.location,
-                reviewDate: req.body.reviewDate,
-                tripDate: req.body.tripDate,
+        console.log(next);
+        console.log(req.body)
 
+        const obj = {
+            locationName: req.body.locationName,
+            reviewer: req.body.reviewer,
+            rating: req.body.rating,
+            review: req.body.review,
+            tripDate: req.body.tripDate,
+            dailyBudget: req.body.dailyBudget,
+            location: {
+                type: req.body.location.type,
+                coordinates: req.body.location.coordinates
             }
-        ).then((data) => {
-            res.locals.newReview = data;
-            console.log(data.reviewDate)
-            return next();
-        }).catch((err) => {
-            return next({
-                log: `Error in AddTrip middleware: ${err}`,
-                message: { err: 'An error occurred' },
+        }
+
+        Trip.create(obj)
+            .then((data) => {
+                res.locals.newReview = data;
+                return next();
+            }).catch((err) => {
+                return next({
+                    log: `Error in AddTrip middleware: ${err}`,
+                    message: { err: 'An error occurred' },
+                })
             })
-        })
     },
 
 
     getLocation(req, res, next) {
-        Trip.find({}, { location: 1, reviewDate: 1}).then((data) => {
+        Trip.find({reviewer: req.cookie.id}).then((data) => {
             console.log('saved data', data)
             res.locals.Locations = data;
             return next();
@@ -80,4 +83,4 @@ const TripController = {
 };
 
 
-module.exports = TripController;
+module.exports = reviewController;

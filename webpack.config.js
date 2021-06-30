@@ -19,6 +19,9 @@ module.exports = {
     proxy: {
       '/api': {
         target: 'http://localhost:3000'
+      },
+      '/user': {
+        target: 'http://localhost:3000'
       }
     }
   },
