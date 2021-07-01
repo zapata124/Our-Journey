@@ -38,16 +38,16 @@ export default function MapContainerComponent() {
   
 
 
-  // useEffect(() => {
-  //   console.log('I am using effect to get data');
-  //   fetch('/home/getPlants')
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       console.log(res.plantList[0].plantInfo);
-  //       setCards(res.plantList || []);
-  //     });
-  // }, []);
-  // console.log(cards);
+  useEffect(() => {
+    console.log('I am using effect to get data');
+    fetch('/api')
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        //setCards(res.plantList || []);
+      });
+  }, []);
+  //console.log(cards);
 
   const handleEditChange = () => {
     console.log('Edit Mode: ', editMode);
