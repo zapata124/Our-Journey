@@ -14,8 +14,8 @@ const App = () => {
       <div>
         <Switch>
           <Route exact path="/">
-            <MapContainerComponent />
-
+            {/* <MapContainerComponent /> */}
+            <SignIn />
             {/* <Dashboard /> */}
           </Route>
           <Route path="/dashboard/Biopage">

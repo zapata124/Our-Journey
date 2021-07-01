@@ -14,6 +14,7 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { LocalConvenienceStoreOutlined } from '@material-ui/icons';
 // import UserService from '@services/user';
 const image = 'https://goingawesomeplaces.com/wp-content/uploads/2020/04/world-maps-with-pins-pinworld.webps://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.123rf.com%2Fphoto_147188443_the-beige-cat-is-playing-the-flute-the-big-green-cat-snake-is-getting-out-of-a-sack-with-american-do.html&psig=AOvVaw2JPlyPH8B9gb-1JydlubKA&ust=1625165535746000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCKDiz8eDwPECFQAAAAAdAAAAABAD'
 // import { UserContext } from '@contexts/user';
@@ -96,17 +97,17 @@ export default function SignUp() {
       .then((res) => res.json())
       .then(data => {
         console.log(data)
-        if (data.success) {
-          alert('username already exists')
+        if (!data.success) {
+          console.log('username already exists')
         }
         return data;
       })
     //.then((data) => setSignedUp(true));
   };
 
-  if (signedUp) {
-    return <SignInSide />;
-  }
+  // if (signedUp) {
+  //   return <SignInSide />;
+  // }
   return (
 
     <div>

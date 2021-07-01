@@ -16,8 +16,8 @@ const reviewController = {
             tripDate: req.body.tripDate,
             dailyBudget: req.body.dailyBudget,
             location: {
-                type: req.body.location.type,
-                coordinates: req.body.location.coordinates
+                type: 'Point',
+                coordinates: req.body.coordinates
             }
         }
 

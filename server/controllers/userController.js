@@ -15,11 +15,20 @@ const userController = {
           message: `Error in the userController.verify, check logs`
         })
 
+      //console.log(result)
 
-      if (result) {
-        const compared = bcrypt.compareSync(result.password, req.locals.password);
+      if (result === null) {
+        //console.log('1')
+        return res.json({ success: false, message: 'This acount does not exist' })
       }
-
+      //console.log()
+      //console.log(req.body.password, result.password);
+      //console.log('1');
+      const compared = bcrypt.compareSync(req.body.password, result.password);
+      if (!compared) {
+        console.log('wrong password');
+        return res.json({ succes: false, message: " this is the wrong password" })
+      }
       res.locals.user = result;
       return next()
     })

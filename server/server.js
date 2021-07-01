@@ -29,11 +29,11 @@ mongoose.connect(MONGO_URL, {
 
 
 app.get('/home', sessionController.isLoggedIn, (req, res) => {
-  res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'));
+  res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
 })
 
 app.get('/signup', (req, res) => {
-  res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'));
+  res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
 })
 
 app.get('/', (req, res) => {
