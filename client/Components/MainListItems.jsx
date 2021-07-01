@@ -9,13 +9,13 @@ export const MainListItems = (props) => {
 
   return (
     <div>
-      <ListItem button>
+      <ListItem button onClick={() => history.push('/dashboard/Biopage')}>
         <ListItemIcon>
           <PersonIcon />
         </ListItemIcon>
         <ListItemText primary="Bio" />
       </ListItem>
-      <ListItem button>
+      <ListItem button onClick={() => history.push('/dashboard/MapPage')}>
         <ListItemIcon>
           <MapIcon />
         </ListItemIcon>

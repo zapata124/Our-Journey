@@ -16,6 +16,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { MainListItems } from './MainListItems';
 import MapContainerComponent from '../Components/MapComponents/MapContainerPage';
+import { useHistory } from 'react-router-dom';
 
 function Copyright() {
   return (
@@ -110,28 +111,10 @@ const useStyles = makeStyles((theme) => ({
     height: 240,
   },
   cardGrid: {
-    paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2),
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
   },
-  card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  cardMedia: {
-    paddingTop: '56.25%', // 16:9
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
-  dangerCard: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    background: 'red',
-    background: 'linear-gradient(red, orange)',
-    color: 'white',
-  },
+  
   controls: {
     display: 'flex',
     alignItems: 'center',
@@ -145,6 +128,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dashboard() {
+
+  let history = useHistory();
+  
   console.log('Hit dashboard');
   useEffect(() => {
     console.log('Inside use effect');
@@ -212,7 +198,7 @@ export default function Dashboard() {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
-          <Container className={classes.cardGrid} maxWidth="md">
+          <Container className={classes.cardGrid}>
             <MapContainerComponent />
             {/* <MapPage /> */}
             {/* <Grid container spacing={4}></Grid> */}
