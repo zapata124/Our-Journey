@@ -84,10 +84,10 @@ export default function SignIn() {
     fetch('/user/login', requestOptions)
       .then((res) => res.json())
       .then((res) => {
-       // if (res === true) {
-          //console.log(res);
-          history.push('/dashboard');
-     //   }
+        // if (res === true) {
+        //console.log(res);
+        history.push('/dashboard/MapPage');
+        //   }
       });
   };
 

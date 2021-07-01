@@ -112,9 +112,9 @@ export default function SignUp() {
       });
   };
 
-  // if (signedUp) {
-  //   return <SignInSide />;
-  // }
+  if (signedUp) {
+    return <SignInSide />;
+  }
   return (
     <div>
       <Grid container component="main" className={classes.root}>
