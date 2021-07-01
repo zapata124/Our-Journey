@@ -83,7 +83,7 @@ export default function SignIn() {
       body: JSON.stringify({ username, password }),
     };
 
-    fetch('/login', requestOptions)
+    fetch('/user/login', requestOptions)
       .then((res) => res.json())
       .then((res) => {
         if (res === true) {
