@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import Dashboard from './Dashboard';
-import Login from './Login';
-import SignUp from './Signup';
+import SignIn from '../signin/signin';
+import SignUp from '..signup/Signup';
 import BioPage from './BioPage';
 import MapPage from './MapPage';
 
