@@ -48,7 +48,8 @@ export default function AddMarker(props) {
     fetch('/api', requestOptions)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+
+        props.handleReviewAdd(data)
         setOpenDialogue(false);
       });
   };

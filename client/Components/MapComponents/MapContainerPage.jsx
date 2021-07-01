@@ -15,7 +15,6 @@ import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 
 import { Icon } from 'leaflet';
-import * as parkData from '../../../data/Skateboard_Parks.geojson';
 
 const useStyles = makeStyles((theme) => ({
   map: {
@@ -25,9 +24,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 //let parkData = JSON.parse(parkDatageo);
 
-const center = [45.450391044188173, -75.471003922411484];
-const zoom = 13;
-const position = [51.505, -0.09];
+const center = [39.73234781330787, -100.94129092977595];
+const zoom = 5;
 
 export default function MapContainerComponent() {
   const classes = useStyles();
@@ -35,7 +33,26 @@ export default function MapContainerComponent() {
   const [activePark, setActivePark] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const [openDialogue, setOpenDialogue] = useState(false);
-  
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    console.log('I am using effect to get data');
+    fetch('/api')
+      .then((res) => res.json())
+      .then((res) => {
+        setReviews(res);
+        console.log(res);
+        //setCards(res.plantList || []);
+      });
+  }, []);
+  //console.log(cards);
+
+  function handleReviewAdd(event) {
+    console.log('Event: ', event);
+    let newReviews = [...reviews, event];
+    console.log('New Reviews: ', newReviews);
+    setReviews(newReviews || []);
+  }
 
   const handleEditChange = () => {
     console.log('Edit Mode: ', editMode);
@@ -68,23 +85,23 @@ export default function MapContainerComponent() {
       </div>
 
       <MapContainer
-        center={[45.4, -75.7]}
-        zoom={12}
+        center={center}
+        zoom={zoom}
         className={classes.map}
-        scrollWheelZoom={false}
+        scrollWheelZoom={true}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-        <AddMarker editMode={editMode} />
+        <AddMarker editMode={editMode} handleReviewAdd={handleReviewAdd} />
 
-        {parkData.features.map((park) => (
+        {reviews.map((review) => (
           <Marker
-            key={park.properties.PARK_ID}
+            key={review._id}
             position={[
-              park.geometry.coordinates[1],
-              park.geometry.coordinates[0],
+              review.location.coordinates[0],
+              review.location.coordinates[1],
             ]}
             eventHandlers={{
               click: () => {
@@ -96,13 +113,13 @@ export default function MapContainerComponent() {
           >
             <Popup
               position={[
-                park.geometry.coordinates[1],
-                park.geometry.coordinates[0],
+                review.location.coordinates[0],
+                review.location.coordinates[1],
               ]}
             >
               <div>
-                <h2>{park.properties.NAME}</h2>
-                <p>{park.properties.DESCRIPTIO}</p>
+                <h2>{review.locationName}</h2>
+                <p>{review.review}</p>
               </div>
             </Popup>
           </Marker>
