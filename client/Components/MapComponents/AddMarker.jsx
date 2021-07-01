@@ -31,12 +31,28 @@ export default function AddMarker(props) {
     setOpenDialogue(false);
     console.log('Open Marker Dialogue changed to: ', openDialogue);
   };
+
+  const handleReviewAdd = (location, rating, review, tripDate) => {
+
+    console.log('Location: ', location);
+    console.log('review: ', review);
+    console.log('latitude1: ',clickLat);
+    //if (locationLat) console.log('latitude2: ', locationLat);
+    //console.log('longitude: ', locationLong);
+    setOpenDialogue(false);
+
+
+  }
+
+
+
   return (
     <AddMarkerDialogue
       openDialogue={props.editMode && openDialogue}
       onDialogueClose={handleCloseDialogue}
       latitude = {clickLat}
       longitude = {clickLong}
+      onReviewAdd = {handleReviewAdd}
     />
   );
 }

@@ -21,18 +21,26 @@ export default function AddMarkerDialogue(props) {
   const [rating, setRating] = useState('');
   const [review, setReview] = useState('');
   const [tripDate, setTripDate] = useState('');
-  const [locationLat, setLocationLat] = useState(props.latitude);
-  const [locationLong, setLocationLong] = useState(props.longitude);
+  // const [locationLat, setLocationLat] = useState('');
+  // const [locationLong, setLocationLong] = useState('');
 
   //if (props.openDialogue === 'open') setOpen(true)
-  console.log('Latitude: ', locationLat);
-  console.log('Latitude Props: ', props.latitude);
+  // console.log('Latitude: ', locationLat);
+  // console.log('Latitude Props: ', props.latitude);
 
   const handleClose = () => {};
 
   const handleCancel = () => {
     props.onDialogueClose();
   };
+
+  // const addReviewClick = (info) => {
+  //   console.log('Location: ', location);
+  //   console.log('review: ', review);
+  //   if (!locationLat) console.log('latitude1: ', props.latitude);
+  //   if (locationLat) console.log('latitude2: ', locationLat);
+  //   console.log('longitude: ', locationLong);
+  // };
 
   // if (props.openDialogue) setOpen(true)
 
@@ -85,34 +93,40 @@ export default function AddMarkerDialogue(props) {
           fullWidth
           onChange={(e) => setTripDate(e.currentTarget.value)}
         />
-        <TextField
+        {/* <TextField
           autoFocus
           margin="dense"
-          id="locationLat"
+          id="locationLat1"
           label="Latitude"
           type="locationLat"
           fullWidth
-          defaultValue={props.latitude}
-          // onChange={(e) => setLocationLat(e.currentTarget.value)}
-        />
-        <TextField
+          value={props.latitude || ''}
+          onChange={(e) => setLocationLat(e.currentTarget.value)}
+        /> */}
+        {/* <TextField
           autoFocus
           margin="dense"
-          id="locationLong"
+          id="locationLong1"
           label="Longitude"
           type="locationLong"
           fullWidth
-          value={props.longitude}
+          // defaultValue="Longitude"
+          value={props.longitude || ''}
           onChange={(e) => setLocationLong(e.currentTarget.value)}
-        />
+        /> */}
       </DialogContent>
       <DialogActions>
         <Button onClick={props.onDialogueClose} color="primary">
           Cancel
         </Button>
         <Button
-          onClick={(e) => {
-            console.log(nickname);
+          onClick={() => {
+            props.onReviewAdd(
+              location,
+              rating,
+              review,
+              tripDate
+            );
           }}
           color="primary"
         >
