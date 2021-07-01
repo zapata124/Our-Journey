@@ -14,24 +14,21 @@ const App = () => {
       <div>
         <Switch>
           <Route exact path="/">
-            <MapContainerComponent />
-
-            {/* <Dashboard /> */}
+            <SignIn />
           </Route>
-          <Route path="/dashboard/Biopage">
-            <BioPage />
+          <Route path="/signup">
+            <SignUp />
           </Route>
           <Route path="/dashboard/MapPage">
             <MapContainerComponent />
           </Route>
+
+          <Route path="/dashboard/Biopage">
+            <BioPage />
+          </Route>
+
           <Route path="/dashboard">
             <Dashboard />
-          </Route>
-          <Route path="/signup">
-            <SignUp />
-          </Route>
-          <Route path="/signup">
-            <SignUp />
           </Route>
         </Switch>
       </div>
