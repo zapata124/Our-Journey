@@ -63,7 +63,7 @@ export default function MapContainerComponent() {
               name="editMode"
             />
           }
-          label="Edit ModeL Add New Markers"
+          label="Toggle Edit Mode to Add a Marker"
         />
       </div>
 
@@ -89,7 +89,7 @@ export default function MapContainerComponent() {
             eventHandlers={{
               click: () => {
                 console.log('marker clicked');
-                setOpen(true);
+                // setOpen(true);
               },
             }}
             // icon={icon}
