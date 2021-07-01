@@ -11,7 +11,7 @@ router.post('/login',
   cookieController.setSSIDCookie,
   sessionController.sessionStart,
   (req, res) => {
-    res.status(200).send() // TODO: REdirect when finished testing
+    res.status(200).json({success: true}) // TODO: REdirect when finished testing
   }
 );
 
@@ -20,7 +20,7 @@ router.post('/signup',
   cookieController.setSSIDCookie,
   sessionController.sessionStart,
   (req, res) => {
-    res.status(200).send() // TODO: Redirect whe finished testing
+    res.status(200).json({success: true}) // TODO: Redirect whe finished testing
   })
 
 module.exports = router;

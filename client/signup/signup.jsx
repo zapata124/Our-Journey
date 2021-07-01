@@ -102,12 +102,12 @@ export default function SignUp() {
         }
         return data;
       })
-    //.then((data) => setSignedUp(true));
+    .then((data) => setSignedUp(true));
   };
 
-  // if (signedUp) {
-  //   return <SignInSide />;
-  // }
+  if (signedUp) {
+    return <SignInSide />;
+  }
   return (
 
     <div>
