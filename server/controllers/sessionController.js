@@ -5,9 +5,10 @@ const sessionController = {
     console.log('start session here')
     Session.create({ cookieId: res.locals.user.id, username: res.locals.user.username }, (err, result) => {
       if (err) {
-        console.log(err);
+        console.log('sessionController.startSession Error: ', err);
         return next(err);
       }
+      return next();
     })
   },
 
@@ -15,7 +16,7 @@ const sessionController = {
 
     Session.findOne({ cookieId: req.cookies.ssid }, (err, result) => {
       if (err) {
-        console.log(err)
+        console.log('sessionController.isLoggedIn Error: ', err)
         return next(err);
       }
       res.locals.username = result;
