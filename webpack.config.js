@@ -53,6 +53,17 @@ module.exports = {
         // the loader which should be applied, it'll be resolved relative to the context
       },
       {
+        // Conditions:
+        test: /.(json|geojson)$/,
+        include: [path.resolve(__dirname, 'data')],
+        exclude: [path.resolve(__dirname, 'node_modules')],
+
+        // Actions:
+        use: ['json-loader'],
+        // the loader which should be applied, it'll be resolved relative to the context
+      },
+
+      {
         oneOf: [
           // ... (rules)
         ],

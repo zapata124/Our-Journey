@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import Dashboard from './Dashboard';
 import SignIn from '../signin/signin';
-import SignUp from '..signup/Signup';
+import SignUp from '../signup/signup';
 import BioPage from './BioPage';
-import MapPage from './MapPage';
+
+import MapContainerComponent from '../Components/MapComponents/MapContainerPage';
 
 const App = () => {
   return (
@@ -13,13 +14,15 @@ const App = () => {
       <div>
         <Switch>
           <Route exact path="/">
-            <Dashboard />
+            <MapContainerComponent />
+
+            {/* <Dashboard /> */}
           </Route>
           <Route path="/dashboard/Biopage">
             <BioPage />
           </Route>
           <Route path="/dashboard/MapPage">
-            <MapPage />
+            <MapContainerComponent />
           </Route>
           <Route path="/dashboard">
             <Dashboard />
