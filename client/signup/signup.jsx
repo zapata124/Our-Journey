@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
+import { useHistory } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -16,15 +17,16 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { LocalConvenienceStoreOutlined } from '@material-ui/icons';
 // import UserService from '@services/user';
-const image = 'https://goingawesomeplaces.com/wp-content/uploads/2020/04/world-maps-with-pins-pinworld.webps://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.123rf.com%2Fphoto_147188443_the-beige-cat-is-playing-the-flute-the-big-green-cat-snake-is-getting-out-of-a-sack-with-american-do.html&psig=AOvVaw2JPlyPH8B9gb-1JydlubKA&ust=1625165535746000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCKDiz8eDwPECFQAAAAAdAAAAABAD'
+const image =
+  'https://goingawesomeplaces.com/wp-content/uploads/2020/04/world-maps-with-pins-pinworld.webps://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.123rf.com%2Fphoto_147188443_the-beige-cat-is-playing-the-flute-the-big-green-cat-snake-is-getting-out-of-a-sack-with-american-do.html&psig=AOvVaw2JPlyPH8B9gb-1JydlubKA&ust=1625165535746000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCKDiz8eDwPECFQAAAAAdAAAAABAD';
 // import { UserContext } from '@contexts/user';
 // import { AuthContext } from '@contexts/auth';
 
 function Copyright() {
   return (
-    <Typography variant='body2' color='textSecondary' align='center'>
+    <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color='inherit' href='https://material-ui.com/'>
+      <Link color="inherit" href="https://material-ui.com/">
         Our Journey
       </Link>{' '}
       {new Date().getFullYear()}
@@ -44,8 +46,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   image: {
-    backgroundImage:
-      `url(https://goingawesomeplaces.com/wp-content/uploads/2020/04/world-maps-with-pins-pinworld.webp)`,
+    backgroundImage: `url(https://goingawesomeplaces.com/wp-content/uploads/2020/04/world-maps-with-pins-pinworld.webp)`,
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'light'
@@ -82,6 +83,7 @@ export default function SignUp() {
   const [password, setPassword] = useState('');
   const [confirmpw, setConfirmpw] = useState('');
 
+  let history = useHistory();
   const onSubmit = () => {
     console.log(username, emailadd, password, confirmpw);
     const requestOptions = {
@@ -90,28 +92,32 @@ export default function SignUp() {
       body: JSON.stringify({
         username: username,
         email: emailadd,
-        password: password
+        password: password,
       }),
     };
     fetch('/user/signup', requestOptions)
       .then((res) => res.json())
-      .then(data => {
-        console.log(data)
+      .then((data) => {
+        console.log("I'm here!!!!!!");
+        console.log(data);
         if (!data.success) {
-          console.log('username already exists')
+          console.log('username already exists');
         }
+        console.log("We're here!!!");
         return data;
       })
-    //.then((data) => setSignedUp(true));
+      .then((data) => {
+        // setSignedUp(true);
+        history.push('/dashboard');
+      });
   };
 
   // if (signedUp) {
   //   return <SignInSide />;
   // }
   return (
-
     <div>
-      <Grid container component='main' className={classes.root}>
+      <Grid container component="main" className={classes.root}>
         <CssBaseline />
         <Grid
           item
@@ -124,44 +130,36 @@ export default function SignUp() {
           {/* <img src="/Assets/plant.png" /> */}
         </Grid>
 
-        <Grid
-          item
-          xs={12}
-          sm={8}
-          md={5}
-          component={Paper}
-          elevation={6}
-          square
-        >
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <div className={classes.paper}>
             <Avatar className={classes.avatar}>
               <LockOutlinedIcon />
             </Avatar>
-            <Typography component='h1' variant='h5'>
+            <Typography component="h1" variant="h5">
               Sign Up
             </Typography>
             {/* <form className={classes.form} noValidate> */}
             <TextField
-              variant='outlined'
-              margin='normal'
+              variant="outlined"
+              margin="normal"
               required
               fullWidth
-              id='Username'
-              label='Username'
-              name='username'
+              id="Username"
+              label="Username"
+              name="username"
               //   autoComplete="email"
               autoFocus
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
             <TextField
-              variant='outlined'
-              margin='normal'
+              variant="outlined"
+              margin="normal"
               required
               fullWidth
-              id='EmailAddress'
-              label='Email Address'
-              name='email'
+              id="EmailAddress"
+              label="Email Address"
+              name="email"
               //   autoComplete="email"
               autoFocus
               value={emailadd}
@@ -169,40 +167,40 @@ export default function SignUp() {
             />
 
             <TextField
-              variant='outlined'
-              margin='normal'
+              variant="outlined"
+              margin="normal"
               required
               fullWidth
-              name='password'
-              label='Password'
-              type='password'
-              id='password'
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-            //   autoComplete="current-password"
+              //   autoComplete="current-password"
             />
             <TextField
-              variant='outlined'
-              margin='normal'
+              variant="outlined"
+              margin="normal"
               required
               fullWidth
-              name='password'
-              label='Confirm Password'
-              type='password'
-              id='password'
+              name="password"
+              label="Confirm Password"
+              type="password"
+              id="password"
               value={confirmpw}
               onChange={(e) => setConfirmpw(e.target.value)}
-            //   autoComplete="current-password"
+              //   autoComplete="current-password"
             />
             <FormControlLabel
-              control={<Checkbox value='remember' color='primary' />}
-              label='Agree to terms and conditions'
+              control={<Checkbox value="remember" color="primary" />}
+              label="Agree to terms and conditions"
             />
             <Button
-              type='submit'
+              type="submit"
               fullWidth
-              variant='contained'
-              color='primary'
+              variant="contained"
+              color="primary"
               className={classes.submit}
               onClick={onSubmit}
             >
@@ -210,10 +208,10 @@ export default function SignUp() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href='#' variant='body2'></Link>
+                <Link href="#" variant="body2"></Link>
               </Grid>
               <Grid item>
-                <Link href='#' variant='body2'></Link>
+                <Link href="#" variant="body2"></Link>
               </Grid>
             </Grid>
             <Box mt={5}>
@@ -227,7 +225,5 @@ export default function SignUp() {
     //     </div>
     //   </div>
     // </div>
-
   );
 }
-
