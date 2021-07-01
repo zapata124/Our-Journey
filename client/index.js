@@ -1,8 +1,5 @@
-import React from 'react'
-//const React = require('react')
-import { render } from 'react-dom';
-//const { render } = require('react-dom');
-import App from './App';
-//const App = require('./client/App');
+import React, { Component } from 'react';
+import {render} from 'react-dom';
+import App from './Components/App';
 
-render(<App />, document.querySelector('#app'));
+render(<App />, document.getElementById('root'));

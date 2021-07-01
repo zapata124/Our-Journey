@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://open.ottawa.ca/
+HostUrl=https://opendata.arcgis.com/api/v3/datasets/5aa044ea0b3644afa51a9816265199b5_16/downloads/data?format=geojson&spatialRefId=4326
