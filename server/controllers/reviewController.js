@@ -7,12 +7,12 @@ const reviewController = {
     addTrip(req, res, next) {
         console.log(next);
         console.log(req.body)
+        console.log('username: ', res.locals.username)
 
-        
 
         const obj = {
             locationName: req.body.locationName,
-            reviewer: req.body.reviewer,
+            reviewer: res.locals.username.username,
             rating: req.body.rating,
             review: req.body.review,
             tripDate: req.body.tripDate,
@@ -37,7 +37,7 @@ const reviewController = {
 
 
     getLocation(req, res, next) {
-        Trip.find({reviewer: req.cookie.id}).then((data) => {
+        Trip.find({ reviewer: res.locals.username.username }).then((data) => {
             console.log('saved data', data)
             res.locals.Locations = data;
             return next();

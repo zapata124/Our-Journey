@@ -38,7 +38,6 @@ export default function AddMarker(props) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         locationName: location,
-        reviewer: 'Prasad',
         rating,
         review,
         tripDate,
