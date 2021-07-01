@@ -15,8 +15,7 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { MainListItems } from './MainListItems';
-import MapPage from './MapPage';
-import ExternalStateExample from './ExternalState';
+import MapContainerComponent from '../Components/MapComponents/MapContainerPage';
 
 function Copyright() {
   return (
@@ -214,7 +213,7 @@ export default function Dashboard() {
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           <Container className={classes.cardGrid} maxWidth="md">
-            <ExternalStateExample />
+            <MapContainerComponent />
             {/* <MapPage /> */}
             {/* <Grid container spacing={4}></Grid> */}
           </Container>
