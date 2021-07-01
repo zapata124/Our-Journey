@@ -86,7 +86,7 @@ export default function SignIn() {
       .then((res) => {
         // if (res === true) {
         //console.log(res);
-        history.push('/dashboard/MapPage');
+        history.push('/dashboard/');
         //   }
       });
   };
