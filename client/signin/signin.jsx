@@ -14,10 +14,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
 
-
 function Copyright() {
   return (
-    <Typography variant='body2' color='textSecondary' align='center'>
+    <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       Our Journey
       {new Date().getFullYear()}
@@ -31,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   image: {
-        
     backgroundImage: `url(https://goingawesomeplaces.com/wp-content/uploads/2020/04/world-maps-with-pins-pinworld.webp)`,
     backgroundRepeat: 'no-repeat',
     backgroundColor:
@@ -86,15 +84,15 @@ export default function SignIn() {
     fetch('/user/login', requestOptions)
       .then((res) => res.json())
       .then((res) => {
-        if (res === true) {
-          console.log(res);
-          history.push('/home');
-        }
+       // if (res === true) {
+          //console.log(res);
+          history.push('/dashboard');
+     //   }
       });
   };
 
   return (
-    <Grid container component='main' className={classes.root}>
+    <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -102,45 +100,45 @@ export default function SignIn() {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component='h1' variant='h5'>
+          <Typography component="h1" variant="h5">
             Sign in
           </Typography>
 
           <TextField
-            variant='outlined'
-            margin='normal'
+            variant="outlined"
+            margin="normal"
             required
             fullWidth
-            id='username'
-            label='Username'
-            name='username'
-            autoComplete='username'
+            id="username"
+            label="Username"
+            name="username"
+            autoComplete="username"
             autoFocus
             value={username}
             onChange={(e) => setUsername(e.currentTarget.value)}
           />
           <TextField
-            variant='outlined'
-            margin='normal'
+            variant="outlined"
+            margin="normal"
             required
             fullWidth
-            name='password'
-            label='Password'
-            type='password'
-            id='password'
-            autoComplete='current-password'
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.currentTarget.value)}
           />
           <FormControlLabel
-            control={<Checkbox value='remember' color='primary' />}
-            label='Remember me'
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
           />
           <Button
-            type='submit'
+            type="submit"
             fullWidth
-            variant='contained'
-            color='primary'
+            variant="contained"
+            color="primary"
             className={classes.submit}
             onClick={onSubmit}
           >
@@ -148,12 +146,12 @@ export default function SignIn() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href='#' variant='body2'>
+              <Link href="#" variant="body2">
                 Forgot password?
               </Link>
             </Grid>
             <Grid item>
-              <Link href='/signup' variant='body2'>
+              <Link href="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

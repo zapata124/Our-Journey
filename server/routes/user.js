@@ -11,7 +11,7 @@ router.post('/login',
   cookieController.setSSIDCookie,
   sessionController.sessionStart,
   (req, res) => {
-    res.status(200).send() // TODO: REdirect when finished testing
+    res.status(200).json({sucess:true}) // TODO: REdirect when finished testing
   }
 );
 
