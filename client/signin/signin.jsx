@@ -74,7 +74,7 @@ export default function SignIn() {
   // })
   let history = useHistory();
   const onSubmit = () => {
-    console.log(history);
+    //console.log(history);
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -86,7 +86,7 @@ export default function SignIn() {
       .then((res) => {
         // if (res === true) {
         //console.log(res);
-        history.push('/dashboard/MapPage');
+        history.push('/dashboard');
         //   }
       });
   };
