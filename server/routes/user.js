@@ -6,7 +6,7 @@ const sessionController = require('../controllers/sessionController');
 
 const router = express.Router();
 
-router.post('/login', 
+router.post('/login',
   userController.verify,
   cookieController.setSSIDCookie,
   sessionController.sessionStart,
@@ -23,4 +23,4 @@ router.post('/signup',
     res.status(200).send() // TODO: Redirect whe finished testing
   })
 
-  module.exports = router;
+module.exports = router;

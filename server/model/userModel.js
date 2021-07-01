@@ -11,11 +11,13 @@ const userSchema = new Schema({
 })
 
 userSchema.statics.usernameInUse = function (username) {
+  console.log(username);
   this.findOne({ username }, (err, result) => {
     if (err) {
       console.log('error inside the usernameInUse method ', err.message)
       return false
     }
+    console.log('result', result)
     if (result) return true;
     return false;
   })

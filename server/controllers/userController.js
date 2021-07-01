@@ -8,8 +8,6 @@ const userController = {
   verify(req, res, next) {
     console.log(req.body)
 
-
-
     user.findOne({ username: req.body.username }, (err, result) => {
       if (err)
         return next({
@@ -17,8 +15,10 @@ const userController = {
           message: `Error in the userController.verify, check logs`
         })
 
-      const compared = bcrypt.compareSync(result.password, req.locals.password);
-      console.log(compared);
+
+      if (result) {
+        const compared = bcrypt.compareSync(result.password, req.locals.password);
+      }
 
       res.locals.user = result;
       return next()
@@ -27,32 +27,34 @@ const userController = {
 
   async createUser(req, res, next) {
 
-    const isNewUser = await user.usernameInUse(req.body.username);
+    user.findOne({ username: req.body.username })
+      .then(result => {
+        if (result) {
+          res.json({
+            success: false,
+            message: 'This email already in use',
+          }).send();
+          throw new Error('email already exists')
+        }
 
-    if (!isNewUser) {
-      console.log('This username is already in use')
-      return res.json({
-        success: false,
-        message: 'This email already in use, try logging in with this email.'
       })
-    }
-
-    const hashedPassword = await bcrypt.hash(req.body.password, SALT_FACTOR)
-
-    user.create({
-      username: req.body.username,
-      password: hashedPassword,
-    }, (err, result) => {
-      if (err)
-        return next({
-          log: `Error  in userController.createUser, error message ${err}`,
-          message: `Error in the userController.createUser, check logs`
+      .then(() => bcrypt.hash(req.body.password, SALT_FACTOR))
+      .then(hashed => {
+        user.create({
+          username: req.body.username,
+          password: hashed,
+        }, (err, result) => {
+          if (err)
+            return next({
+              log: `Error  in userController.createUser, error message ${err}`,
+              message: `Error in the userController.createUser, check logs`
+            })
+          res.locals.user = result;
+          return next();
         })
-      res.locals.user = result;
-      return next();
-    })
+      })
+      .catch(error => console.log(error))
   }
-
 }
 
 module.exports = userController;
