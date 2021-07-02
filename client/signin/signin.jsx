@@ -18,7 +18,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      Our Journey
+      Pin It
       {new Date().getFullYear()}
       {'.'}
     </Typography>

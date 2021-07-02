@@ -21,6 +21,7 @@ export default function AddMarkerDialogue(props) {
   const [rating, setRating] = useState('');
   const [review, setReview] = useState('');
   const [tripDate, setTripDate] = useState('');
+  
 
   const handleClose = () => {};
 
