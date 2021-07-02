@@ -175,7 +175,7 @@ export default function Dashboard() {
               noWrap
               className={classes.title}
             >
-              Map My Journey
+              Pin It
             </Typography>
             <IconButton color="inherit"></IconButton>
           </Toolbar>
